@@ -4,6 +4,8 @@ Class = require 'class'
 
     --Runs when the game first starts up, only once; used to initialize the game.
 
+local background = love.graphics.newImage('background.png')
+
 function love.load()
     love.window.setTitle('Racing Game')
     love.window.setMode(0, 0, {
@@ -62,7 +64,7 @@ function love.update(dt)
     if gamestate == 'play' then
         ball:update(dt)
     end
-
+end
 
 function love.keypressed(key)
     --Escape exits fullscreen
