@@ -27,7 +27,7 @@ function love.load()
     
     sounds['Intense music']:play()
 
-    master_volume = 1 -- Maximum volume for all sounds
+    master_volume = 100 -- Maximum volume for all sounds
     mute = false
 
 end
@@ -79,12 +79,30 @@ end
 function love.draw()
    love.graphics.draw(background, 0, 0)
    love.graphics.setFont(font30)
-   love.graphics.printf('Volume: ' .. love.audio.getVolume(),0,0,Virtual_width,'right')
+   love.graphics.printf('Volume: ' .. math.abs(math.ceil(love.audio.getVolume()*100-0.5)),0,0,Virtual_width,'right')
 end
 
-function love.update()
+function love.update(dt)
+    -- + increases volume, - decreases it
+    if love.keyboard.isDown("=") then
+        master_volume = master_volume + dt * 15
+        mute = false
+    end
+    if love.keyboard.isDown("-") then
+        master_volume = master_volume - dt * 15
+        mute = false
+    end
+
+    --Makes sure volume isn't above 100 or bellow 0
+    if master_volume > 100 then
+        master_volume = 100
+    end
+    if master_volume < 0 then
+        master_volume = 0
+    end
+
     if mute == false then
-        love.audio.setVolume(master_volume)
+        love.audio.setVolume(master_volume / 100)
     else 
         love.audio.setVolume(0)
     end
