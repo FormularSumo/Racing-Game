@@ -26,7 +26,7 @@ function love.load()
     
     sounds['Intense music']:play()
 
-    master_volume = 0 -- Maximum volume for all sounds
+    master_volume = 1 -- Maximum volume for all sounds
 
 end
 
