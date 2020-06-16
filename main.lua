@@ -19,6 +19,12 @@ function love.load()
 
     font50 = love.graphics.newFont(50)
     font80 = love.graphics.newFont(80)
+
+    sounds = {
+        ['Intense music'] = love.audio.newSource('Possible soundtrack.mp3', 'static'),
+    }
+    
+    sounds['Intense music']:play()
 end
 
 
