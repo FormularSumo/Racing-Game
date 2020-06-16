@@ -61,6 +61,13 @@ function love.keypressed(key)
     if key == 'f5' then 
         reset()
     end
+    if key == 'm' then 
+        if master_volume > 0 then
+            master_volume = 0
+        else
+            master_volume = 1
+        end
+    end
 end
 
 
