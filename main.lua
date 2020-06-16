@@ -17,6 +17,7 @@ function love.load()
         vsync = true
     })
 
+    font30 = love.graphics.newFont(30)
     font50 = love.graphics.newFont(50)
     font80 = love.graphics.newFont(80)
 
@@ -47,17 +48,17 @@ function love.keypressed(key)
         end
     end
     --Space plays/pauses
-    if key == 'space' then
-        if gamestate == 'pause' or gamestate == 'serve' then
-            gamestate = 'play'
-        elseif gamestate == 'play' then
-            gamestate = 'pause'
-        else
-            reset()
-            gamestate = 'serve'
-        end
-    end
-    --F5 resets program
+    -- if key == 'space' then
+    --     if gamestate == 'pause' or gamestate == 'serve' then
+    --         gamestate = 'play'
+    --     elseif gamestate == 'play' then
+    --         gamestate = 'pause'
+    --     else
+    --         reset()
+    --         gamestate = 'serve'
+    --     end
+    -- end
+    -- --F5 resets program
     if key == 'f5' then 
         reset()
     end
@@ -75,6 +76,8 @@ end
 
 function love.draw()
    love.graphics.draw(background, 0, 0)
+   love.graphics.setFont(font30)
+   love.graphics.printf('Volume: ' .. master_volume,0,0,Virtual_width,'right')
 end
 
 function love.update()
