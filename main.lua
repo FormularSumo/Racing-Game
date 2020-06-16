@@ -25,6 +25,9 @@ function love.load()
     }
     
     sounds['Intense music']:play()
+
+    love.audio.setVolume(1)
+
 end
 
 
