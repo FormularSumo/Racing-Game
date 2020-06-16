@@ -28,6 +28,7 @@ function love.load()
     sounds['Intense music']:play()
 
     master_volume = 1 -- Maximum volume for all sounds
+    mute = false
 
 end
 
@@ -62,11 +63,12 @@ function love.keypressed(key)
     if key == 'f5' then 
         reset()
     end
+    -- m toggles mute
     if key == 'm' then 
-        if master_volume > 0 then
-            master_volume = 0
+        if love.audio.getVolume() > 0 then
+            mute = true
         else
-            master_volume = 1
+            mute = false
         end
     end
 end
@@ -77,9 +79,13 @@ end
 function love.draw()
    love.graphics.draw(background, 0, 0)
    love.graphics.setFont(font30)
-   love.graphics.printf('Volume: ' .. master_volume,0,0,Virtual_width,'right')
+   love.graphics.printf('Volume: ' .. love.audio.getVolume(),0,0,Virtual_width,'right')
 end
 
 function love.update()
-    love.audio.setVolume(master_volume)
+    if mute == false then
+        love.audio.setVolume(master_volume)
+    else 
+        love.audio.setVolume(0)
+    end
 end
