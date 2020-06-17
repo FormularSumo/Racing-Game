@@ -21,11 +21,10 @@ function love.load()
     font50 = love.graphics.newFont(50)
     font80 = love.graphics.newFont(80)
 
-    sounds = {
-        ['Intense music'] = love.audio.newSource('Possible soundtrack.mp3', 'static'),
-    }
+    Intense_music = love.audio.newSource('Possible soundtrack.mp3', 'static')
     
-    sounds['Intense music']:play()
+    Intense_music:setLooping(true)
+    Intense_music:play()
 
     master_volume = 100 -- Maximum volume for all sounds
     mute = false
