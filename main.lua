@@ -1,20 +1,24 @@
 Class = require 'class'
+push  = require 'push'
 
-
-Virtual_width = 1920
-Virtual_height = 1080
+VIRTUAL_WIDTH = 1920
+VIRTUAL_HEIGHT = 1080
 
 
 local background = love.graphics.newImage('background.png')
+car1 = love.graphics.newImage('car 1.png')
+car2 = love.graphics.newImage('car 2.png')
+car3 = love.graphics.newImage('car 3.png')
+car9 = love.graphics.newImage('car 9.png')
 
 
 function love.load()
     love.window.setTitle('Racing Game')
     
-    love.window.setMode(0, 0, {
+    push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, 0, 0, {
+        vsync = true,
         fullscreen = true,
-        resizable = true,
-        vsync = true
+        resizable = true
     })
 
     font30 = love.graphics.newFont(30)
@@ -76,9 +80,17 @@ end
 --Called after update by LÖVE2D, used to draw anything to the screen, updated or otherwise.
 
 function love.draw()
-   love.graphics.draw(background, 0, 0)
-   love.graphics.setFont(font30)
-   love.graphics.printf('Volume: ' .. math.abs(math.ceil(love.audio.getVolume()*100-0.5)),0,0,Virtual_width,'right')
+    push:start()
+
+    love.graphics.draw(background, 0, 0)
+    love.graphics.setFont(font30)
+    love.graphics.printf('Volume: ' .. math.abs(math.ceil(love.audio.getVolume()*100-0.5)),0,0,VIRTUAL_WIDTH,'right')
+
+    push:finish()
+end
+
+function love.resize(w, h)
+    push:resize(w, h)
 end
 
 function love.update(dt)
